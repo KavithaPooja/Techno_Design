@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beautified Homepage</title>
+    <title>Beautified Homepage </title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             overflow: hidden;
             height: 100%;
+            display: flex;
         }
 
         .video-bg {
@@ -23,6 +24,74 @@
             z-index: -1;
         }
 
+      
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px; 
+            background-color: #d6552a;
+            padding-top: 20px;
+            z-index: 2;
+            overflow-x: hidden;
+            transition: left 0.3s ease;
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        .sidebar .dropdown-btn {
+            font-size: 18px;
+            border: none;
+            background: none;
+            color: white;
+            padding: 10px 15px;
+            text-align: left;
+            outline: none;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar .dropdown-btn:hover {
+            background-color: #575757;
+        }
+
+        .sidebar .dropdown-container {
+            display: none;
+            background-color: #414141;
+            padding-left: 8px;
+        }
+
+        .sidebar .dropdown-container a {
+            padding: 8px 15px;
+            font-size: 16px;
+            color: #b8b8b8;
+        }
+
+        .sidebar .dropdown-container a:hover {
+            background-color: #575757;
+            color: white;
+        }
+
+    
+        .main {
+            margin-left: 0;
+            padding: 0px;
+            width: 100%;
+            transition: margin-left 0.3s ease;
+        }
         nav {
             background-color: #dba50f;
             overflow: hidden;
@@ -145,9 +214,11 @@
             0% {
                 transform: scale(1);
             }
+
             50% {
                 transform: scale(1.1);
             }
+
             100% {
                 transform: scale(1);
             }
@@ -170,35 +241,113 @@
             height: 100%;
             z-index: 0;
         }
+
+        
+        .hover-area {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 30px;
+            height: 100vh;
+            z-index: 3;
+            background: transparent;
+        }
+
+        
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 0;
+                left: -250px;
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .hover-area {
+                display: none;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <video class="video-bg" autoplay muted loop>
-        <source src="98970-650472561_tiny.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <div class="hover-area"></div>
 
-    <nav>
+    <div class="sidebar">
         <a href="index.html">Home</a>
-        <a href="agriculture.html">Agriculture</a>
-        <a href="anime.html">Anime</a>
-    </nav>
-
-    <div class="container">
-        <div class="card crops">
-            <img src="croppy.jpg" alt="Crops Image">
-            <h2>CROPS</h2>
-            <button onclick="location.href='agriculture.html'">Explore</button>
+        <button class="dropdown-btn">Agriculture 
+            &#9660;
+        </button>
+        <div class="dropdown-container">
+            <a href="agriculture.html">Summer Seeason</a>
+            <a href="agriculture.html">Winter Season</a>
+            <a href="agriculture.html">Spring Season</a>
         </div>
-        <div class="spacer"></div>
-        <div class="card anime">
-            <img src="aot.webp" alt="Anime Image">
-            <h2>ANIME</h2>
-            <button onclick="location.href='anime.html'">Explore</button>
+        <button class="dropdown-btn">Anime 
+            &#9660;
+        </button>
+        <div class="dropdown-container">
+            <a href="shonen.html">Shonen</a>
+            <a href="seinen.html">Seinen</a>
+            <a href="shoujo.html">Shoujo</a>
         </div>
     </div>
+
+    <div class="main">
+        <video class="video-bg" autoplay muted loop>
+            <source src="98970-650472561_tiny.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="agriculture.html">Agriculture</a>
+            <a href="anime.html">Anime</a>
+        </nav>
+
+        <div class="container">
+            <div class="card crops">
+                <img src="croppy.jpg" alt="Crops Image">
+                <h2>CROPS</h2>
+                <button onclick="location.href='agriculture.html'">Explore</button>
+            </div>
+            <div class="spacer"></div>
+            <div class="card anime">
+                <img src="aot.webp" alt="Anime Image">
+                <h2>ANIME</h2>
+                <button onclick="location.href='anime.html'">Explore</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* Toggle sidebar visibility on hover */
+        document.querySelector('.hover-area').addEventListener('mouseenter', function () {
+            document.querySelector('.sidebar').style.left = '0';
+        });
+
+        document.querySelector('.sidebar').addEventListener('mouseleave', function () {
+            document.querySelector('.sidebar').style.left = '-250px';
+        });
+
+        /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content */
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+    </script>
 
 </body>
 
