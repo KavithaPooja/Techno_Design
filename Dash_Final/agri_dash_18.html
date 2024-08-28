@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Profit Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200vh;
+            background-image: url('land.png'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: repeat(2, auto);
+            gap: 70px;
+            width: 90%;
+            max-width: 1200px;
+            align-items: center;
+        }
+
+        .bar-chart, .pie-chart-container, .line-chart-container, .pyramid-chart-container, .data-table {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(229, 77, 77, 0.1);
+            background-color: #ffffff93;
+        }
+
+        .bar-chart h3, .pie-chart-container h3, .line-chart-container h3, .pyramid-chart-container h3, .data-table h3 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        .bar {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .bar div {
+            height: 30px;
+            background: linear-gradient(to right, #df5661, #e72b32); 
+            margin-bottom: 20px;
+            border-radius: 5px;
+            position: relative;
+            padding-right: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            animation: barAnimate 2s ease-out;
+        }
+
+        .bar div span {
+            color: white;
+            font-weight: bold;
+        }
+
+        .bar div .percentage {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .pie-chart-container, .line-chart-container, .pyramid-chart-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .pie-chart {
+            width: 100%;
+            max-width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: conic-gradient(#7b2d2d 0% 25%, #e4202d 25% 50%, #db7070 50% 75%, #ffb6c1 75% 100%); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: pieAnimate 2s ease-out;
+        }
+
+        .pie-chart::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .pie-chart span {
+            position: absolute;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .pie-chart .percentage-1 {
+            top: 20%;
+            left: 35%;
+            transform: translate(-50%, -50%);
+        }
+
+        .pie-chart .percentage-2 {
+            top: 30%;
+            right: 13%;
+            transform: translate(-50%, -50%);
+        }
+
+        .pie-chart .percentage-3 {
+            bottom: 10%;
+            left: 60%;
+            transform: translate(-50%, -50%);
+        }
+
+        .pie-chart .percentage-4 {
+            top: 60%;
+            left: 18%;
+            transform: translate(-50%, -50%);
+        }
+        .data-table {
+            grid-column: span 2;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            animation: tableAnimate 2s ease-out;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #ec2e2e; 
+        }
+
+        @keyframes barAnimate {
+            from {
+                transform: scaleX(0);
+            }
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        @keyframes pieAnimate {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes tableAnimate {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+ 
+    <div class="bar-chart">
+        <h3>Annual Cumquat Profits</h3>
+        <div class="bar">
+            <div style="width: 80%;"><span>2026</span><span class="percentage">80%</span></div>
+            <div style="width: 70%;"><span>2025</span><span class="percentage">70%</span></div>
+            <div style="width: 60%;"><span>2024</span><span class="percentage">60%</span></div>
+            <div style="width: 50%;"><span>2023</span><span class="percentage">50%</span></div>
+            <div style="width: 40%;"><span>2022</span><span class="percentage">40%</span></div>
+            <div style="width: 30%;"><span>2021</span><span class="percentage">30%</span></div>
+            <div style="width: 20%;"><span>2020</span><span class="percentage">20%</span></div>
+        </div>
+    </div>
+
+ 
+    <div class="pie-chart-container">
+        <h3>Cumquat Profit Distribution</h3>
+        <div class="pie-chart">
+            <span class="percentage-1">40%</span>
+            <span class="percentage-2">25%</span>
+            <span class="percentage-3">20%</span>
+            <span class="percentage-4">15%</span>
+        </div>
+    </div>
+
+    <div class="line-chart-container">
+        <h3>Cumquat Profit Trend Over Years</h3>
+        <canvas id="lineChart"></canvas>
+    </div>
+
+    <div class="pyramid-chart-container">
+        <h3>Cumquat Profit Pyramid</h3>
+        <canvas id="pyramidChart"></canvas>
+    </div>
+
+    
+    <div class="data-table">
+        <h3>Cumquat Profit Data Table</h3>
+        <table>
+            <tr>
+                <th>Year</th>
+                <th>Profit (in USD)</th>
+                <th>Percentage</th>
+                <th>Region</th>
+            </tr>
+            <tr>
+                <td>2026</td>
+                <td>$14,000</td>
+                <td>80%</td>
+                <td>North</td>
+            </tr>
+            <tr>
+                <td>2025</td>
+                <td>$11,000</td>
+                <td>70%</td>
+                <td>South</td>
+            </tr>
+            <tr>
+                <td>2024</td>
+                <td>$9,000</td>
+                <td>60%</td>
+                <td>East</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    
+    const ctxLine = document.getElementById('lineChart').getContext('2d');
+    new Chart(ctxLine, {
+        type: 'line',
+        data: {
+            labels: ['2020', '2021', '2022', '2023', '2024', '2025', '2026'],
+            datasets: [{
+                label: 'Profit (in USD)',
+                data: [2000, 3000, 4000, 5000, 6000, 7000, 8000],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)', 
+                borderColor: 'rgba(255, 99, 132, 1)', 
+                borderWidth: 2,
+                fill: true,
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            },
+            animation: {
+                duration: 3200,
+                easing: 'easeInOutQuad'
+            }
+        }
+    });
+
+   
+    const ctxPyramid = document.getElementById('pyramidChart').getContext('2d');
+    new Chart(ctxPyramid, {
+        type: 'bar',
+        data: {
+            labels: ['Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5'],
+            datasets: [{
+                label: 'Profit Contribution',
+                data: [35, 25, 20, 12, 8],
+                backgroundColor: 'rgba(217, 33, 33, 0.8)', 
+                borderColor: 'rgba(217, 33, 33, 1)', 
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    reverse: true 
+                },
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            layout: {
+                padding: {
+                    top: 10,
+                    bottom: 10
+                }
+            },
+            animation: {
+                duration: 3200,
+                easing: 'easeInOutQuad'
+            }
+        }
+    });
+
+   
+    const ctxPie = document.getElementById('pieChart').getContext('2d');
+    new Chart(ctxPie, {
+        type: 'pie',
+        data: {
+            labels: ['Segment A', 'Segment B', 'Segment C', 'Segment D'],
+            datasets: [{
+                data: [40, 25, 20, 15],
+                backgroundColor: ['#ff69b4', '#ff1493', '#db7093', '#ffb6c1'],
+                borderColor: '#fff',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            },
+            animation: {
+                duration: 3200,
+                easing: 'easeInOutQuad'
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

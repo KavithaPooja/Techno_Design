@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautified Homepage</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        nav {
+            background-color: #dba50f;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 14px 0;
+            position: relative;
+            z-index: 1;
+            transition: background-color 0.3s ease;
+        }
+
+        nav:hover {
+            background-color: #c42c2c;
+        }
+
+        nav a {
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+            transform: scale(1.1);
+        }
+
+        nav form {
+            margin: 0;
+        }
+
+        nav input[type="text"] {
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+            transition: border-color 0.3s ease;
+        }
+
+        nav input[type="text"]:focus {
+            border-color: #007bff;
+        }
+
+        nav input[type="submit"] {
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        nav input[type="submit"]:hover {
+            background-color: #ddd;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 80vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card h2 {
+            margin: 0;
+            padding: 15px;
+            text-align: center;
+            color: #fff;
+            font-size: 1.5em;
+        }
+
+        .crops {
+            background-color: #f1a027;
+        }
+
+        .anime {
+            background-color: #FF5252;
+        }
+
+        .card button {
+            display: block;
+            width: 80%;
+            margin: 15px auto;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: pulse 1.5s infinite;
+        }
+
+        .card button:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .spacer {
+            margin: 20px;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <video class="video-bg" autoplay muted loop>
+        <source src="98970-650472561_tiny.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="agriculture.html">Agriculture</a>
+        <a href="anime.html">Anime</a>
+    </nav>
+
+    <div class="container">
+        <div class="card crops">
+            <img src="croppy.jpg" alt="Crops Image">
+            <h2>CROPS</h2>
+            <button onclick="location.href='agriculture.html'">Explore</button>
+        </div>
+        <div class="spacer"></div>
+        <div class="card anime">
+            <img src="aot.webp" alt="Anime Image">
+            <h2>ANIME</h2>
+            <button onclick="location.href='anime.html'">Explore</button>
+        </div>
+    </div>
+
+</body>
+
+</html>

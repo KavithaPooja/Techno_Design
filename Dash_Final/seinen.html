@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seinen Anime Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200vh;
+            background-image: url('seinenb.jpg'); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: repeat(2, auto);
+            gap: 70px;
+            width: 90%;
+            max-width: 1200px;
+            align-items: center;
+        }
+
+        .bar-chart, .pie-chart-container, .line-chart-container, .pyramid-chart-container, .data-table {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(229, 77, 77, 0.1);
+            background-color: #ffffff84;
+        }
+
+        .bar-chart h3, .pie-chart-container h3, .line-chart-container h3, .pyramid-chart-container h3, .data-table h3 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #1a1a1a;
+        }
+
+        .bar {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .bar div {
+            height: 30px;
+            background: linear-gradient(to right, #2c5a9f, #0d207d);
+            margin-bottom: 20px;
+            border-radius: 5px;
+            position: relative;
+            padding-right: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            animation: barAnimate 2s ease-out;
+        }
+
+        .bar div span {
+            color: white;
+            font-weight: bold;
+        }
+
+        .bar div .percentage {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .pie-chart-container, .line-chart-container, .pyramid-chart-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .pie-chart {
+            width: 100%;
+            max-width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: conic-gradient(#325bcd 0% 13% , #24326e 13% 58%, #5973e7 58% 73%, #1b4e9a 73% 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: pieAnimate 2s ease-out;
+        }
+
+        .pie-chart::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .pie-chart span {
+            position: absolute;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .pie-chart .percentage-1 {
+            top: 20%;
+            left: 35%;
+            transform: translate(-50%, -50%);
+        }
+
+        .pie-chart .percentage-2 {
+            top: 15%;
+            right: 10%;
+            left: 70%;
+            transform: translate(-50%, -50%);
+        }
+
+        .pie-chart .percentage-3 {
+            bottom: 10%;
+            left: 60%;
+            transform: translate(-50%, -50%);
+        }
+
+        .pie-chart .percentage-4 {
+            top: 60%;
+            left: 18%;
+            transform: translate(-50%, -50%);
+        }
+
+        .data-table {
+            grid-column: span 2;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            animation: tableAnimate 2s ease-out;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #103da0;
+        }
+
+        @keyframes barAnimate {
+            from {
+                transform: scaleX(0);
+            }
+            to {
+                transform: scaleX(1);
+            }
+        }
+
+        @keyframes pieAnimate {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes tableAnimate {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+ 
+    <div class="bar-chart">
+        <h3>Seinen Popularity over the Years</h3>
+        <div class="bar">
+            <div style="width: 70%;"><span>2023</span><span class="percentage">70%</span></div>
+            <div style="width: 80%;"><span>2022</span><span class="percentage">80%</span></div>
+            <div style="width: 90%;"><span>2021</span><span class="percentage">90%</span></div>
+            <div style="width: 75%;"><span>2020</span><span class="percentage">75%</span></div>
+            <div style="width: 70%;"><span>2019</span><span class="percentage">70%</span></div>
+            <div style="width: 70%;"><span>2018</span><span class="percentage">70%</span></div>
+            <div style="width: 80%;"><span>2017 </span><span class="percentage">80%</span></div>
+        </div>
+    </div>
+
+    
+    <div class="pie-chart-container">
+        <h3>Comparison</h3>
+        <div class="pie-chart">
+            <span class="percentage-1">Shoujo</span>
+            <span class="percentage-2">Seinen</span>
+            <span class="percentage-3">Shonen</span>
+            <span class="percentage-4">Other</span>
+        </div>
+    </div>
+
+ 
+    <div class="line-chart-container">
+        <h3>Annual Anime Releases</h3>
+        <canvas id="lineChart"></canvas>
+    </div>
+
+   
+    <div class="pyramid-chart-container">
+        <h3>Viewership</h3>
+        <canvas id="pyramidChart"></canvas>
+    </div>
+
+    
+    <div class="data-table">
+        <h3>Highest Rated Seinen</h3>
+        <table>
+            <tr>
+                <th>Year</th>
+                <th>Anime Name</th>
+                <th>Rating</th>
+                <th>No. of Episodes</th>
+            </tr>
+            <tr>
+                <td>1998</td>
+                <td>Cowboy Bebop</td>
+                <td>8.9</td>
+                <td>26</td>
+            </tr>
+            <tr>
+                <td>2011</td>
+                <td>Steins;Gate</td>
+                <td>8.8</td>
+                <td>26</td>
+            </tr>
+            <tr>
+                <td>2015</td>
+                <td>One Punch Man</td>
+                <td>8.7</td>
+                <td>25</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+   
+    const ctxLine = document.getElementById('lineChart').getContext('2d');
+new Chart(ctxLine, {
+    type: 'line',
+    data: {
+        labels: ['2017', '2018', '2019', '2020', '2021', '2022', '2023'],
+        datasets: [{
+            label: 'Profit',
+            data: [8000, 6000, 7000, 8000, 6500, 8500, 9000],
+            backgroundColor: 'rgba(0, 0, 255, 0.2)', 
+            borderColor: 'rgba(0, 0, 139, 1)', 
+            borderWidth: 2,
+            fill: true,
+            tension: 0.1
+        }]
+
+        },
+        options: {
+            scales: {
+                x: {
+                    beginAtZero: true
+                },
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            },
+            animation: {
+                duration: 1500,
+                easing: 'easeInOutQuad'
+            }
+        }
+    });
+
+   
+    const ctxPyramid = document.getElementById('pyramidChart').getContext('2d');
+    new Chart(ctxPyramid, {
+        type: 'bar',
+        data: {
+            labels: ['Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5'],
+            datasets: [{
+                label: 'Profit Contribution',
+                data: [11, 12, 10, 11, 12],
+                backgroundColor: 'rgba(0, 0, 255, 0.2)',
+                borderColor: 'rgba(0, 0, 139, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    reverse: true 
+                },
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            layout: {
+                padding: {
+                    top: 10,
+                    bottom: 10
+                }
+            },
+            animation: {
+                duration: 3000,
+                easing: 'easeInOutQuad'
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
